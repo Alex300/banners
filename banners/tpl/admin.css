@@ -1,0 +1,11 @@
+/**
+ * Cotonti Plugin Banners
+ * Banner rotation plugin with statistics
+ *
+ * @package Banners
+ * @author Alex
+ * @copyright Portal30 2013 http://portal30.ru
+ */
+.admin-banner-preview img{
+    max-height: 200px;
+}
