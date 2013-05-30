@@ -33,10 +33,10 @@ function baAutoLoader($class){
  * Generates a banner widget.
  * Use it as CoTemplate callback.
  *
- * @param string $tpl
  * @param string $cat  Category, semicolon separated
- * @param string $order  'order' OR 'rand'
  * @param int $cnt  Banner count
+ * @param string $tpl
+ * @param string $order  'order' OR 'rand'
  * @param int|bool $client
  * @param int|bool $subcats
  * @return string
@@ -44,7 +44,7 @@ function baAutoLoader($class){
  * @todo учесть кеширование
  * @todo считать порядок не по кол-ву а по последнему показу
  */
-function banner_widget($tpl = 'banners', $cat = '', $cnt = 1, $order = 'order', $client = false, $subcats = false){
+function banner_widget($cat = '', $cnt = 1, $tpl = 'banners', $order = 'order', $client = false, $subcats = false){
     global $sys;
 
     $cats = array();
