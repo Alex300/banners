@@ -41,8 +41,6 @@ function baAutoLoader($class){
  * @param int|bool $subcats
  * @return string
  *
- * @todo учесть кеширование
- * @todo считать порядок не по кол-ву а по последнему показу
  */
 function banner_widget($cat = '', $cnt = 1, $tpl = 'banners', $order = 'order', $client = false, $subcats = false){
     global $sys;
