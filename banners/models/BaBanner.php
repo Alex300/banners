@@ -208,7 +208,7 @@ class BaBanner extends BaModelAbstract{
         global $db, $db_ba_tracks, $sys;
 
         $this->_data['ba_impmade'] += 1;
-        $this->_data['ba_lastimp'] = date('Y-m-d H:i:s', $sys['now']);
+        $this->_data['ba_lastimp']= microtime(true);
         $this->save();
 
         // Ежедневная статистика
@@ -358,12 +358,14 @@ class BaBanner extends BaModelAbstract{
                     'TYPE' => $banner->ba_type,
                     'PUBLISHED' => $banner->ba_published ? $L['Yes'] : $L['No'],
                     'CLASS' => '',
+                    'CACHE' => 0
 
                 );
 
                 if (!empty($cache_ext) && $usr['id'] == 0 && $cfg['cache_' . $cache_ext]){
                     // учесть кеширование - запрашивать баннер аяксом
                     $temp_array['CLASS'] = 'banner-loading';
+                    $temp_array['CACHE'] = 1;
                     $image = cot_rc('banner_load', array(
                         'width' => $banner->ba_width,
                         'height' => $banner->ba_height

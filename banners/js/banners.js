@@ -8,15 +8,20 @@
  */
 
 $(function() {
-    var bids = new Array();
+    var cats = new Array();
+    var cnt = 0;
     $('div.banner-loading').each(function(){
         var id = $(this).attr('id');
         id = parseInt(id.replace('banner_', ''));
-        if(id > 0) bids.push(id);
+        var cat = $(this).attr('banner_category');
+        if(id > 0){
+            cats[id] = cat;
+            cnt++;
+        }
     });
 
-    if(bids.length > 0){
-        $.post('index.php?e=banners&a=ajxLoad', {bids: bids, x : bannerx}, function(data){
+    if(cnt > 0){
+        $.post('index.php?e=banners&a=ajxLoad', {cats: cats, x : bannerx}, function(data){
             if(data.error != ''){
                 alert(data.error)
             }else{

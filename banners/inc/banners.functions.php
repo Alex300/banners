@@ -33,17 +33,17 @@ function baAutoLoader($class){
  * Generates a banner widget.
  * Use it as CoTemplate callback.
  *
- * @param string $cat  Category, semicolon separated
- * @param int $cnt  Banner count
  * @param string $tpl
+ * @param string $cat  Category, semicolon separated
  * @param string $order  'order' OR 'rand'
+ * @param int $cnt  Banner count
  * @param int|bool $client
  * @param int|bool $subcats
  * @return string
  *
  */
 function banner_widget($cat = '', $cnt = 1, $tpl = 'banners', $order = 'order', $client = false, $subcats = false){
-    global $sys;
+    global $sys, $cache_ext, $usr, $cfg;
 
     $cats = array();
     $client = (int)$client;
@@ -80,7 +80,7 @@ function banner_widget($cat = '', $cnt = 1, $tpl = 'banners', $order = 'order', 
         $cond[] = array('bac_id', $client);
     }
     $ord = "ba_lastimp ASC";
-    if($order = 'rand') $ord = 'RAND()';
+    if($order == 'rand') $ord = 'RAND()';
 
     $banners = BaBanner::find($cond, $cnt, 0, $ord);
 
@@ -90,7 +90,10 @@ function banner_widget($cat = '', $cnt = 1, $tpl = 'banners', $order = 'order', 
     $t = new XTemplate(cot_tplfile($tpl, 'plug'));
 
     foreach($banners as $banner){
-        $banner->impress();
+        // Если включено кеширование и это незарег не засчитываем показ. Баннер будет запрошен аяксом
+        if (!(!empty($cache_ext) && $usr['id'] == 0 && $cfg['cache_' . $cache_ext])){
+            $banner->impress();
+        }
         $t->assign(BaBanner::generateTags($banner, 'ROW_'));
         $t->parse('MAIN.ROW');
     }

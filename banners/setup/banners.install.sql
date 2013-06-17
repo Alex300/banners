@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `cot_banners` (
   `ba_publish_down` DATETIME DEFAULT '0000-00-00 00:00:00',
   `ba_imptotal` INTEGER DEFAULT '0',
   `ba_impmade` INTEGER DEFAULT '0',
-  `ba_lastimp` DATETIME DEFAULT '0000-00-00 00:00:00',
+  `ba_lastimp` double DEFAULT '0',
   `ba_clicks` INTEGER DEFAULT '0',
   `bac_id` INTEGER DEFAULT '0',
   `ba_track_clicks` TINYINT DEFAULT '-1',
