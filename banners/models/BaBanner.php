@@ -208,7 +208,7 @@ class BaBanner extends BaModelAbstract{
         global $db, $db_ba_tracks, $sys;
 
         $this->_data['ba_impmade'] += 1;
-        $this->_data['ba_lastimp']= microtime(true);
+        $this->_data['ba_lastimp'] = microtime(true);
         $this->save();
 
         // Ежедневная статистика

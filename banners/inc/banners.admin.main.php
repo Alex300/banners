@@ -186,8 +186,6 @@ class MainController{
         }
 
         if ($act == 'save'){
-//            var_dump($_POST);
-
             $item = array();
 //            $item['ba_id'] = cot_import('rid', 'P', 'INT');
             $item['ba_title'] = cot_import('rtitle', 'P', 'TXT');
@@ -237,7 +235,7 @@ class MainController{
                             cot_error($L['ba_err_inv_file_type'], 'rfile');
                     }
                 }
-            }else{
+            }elseif($item['ba_type'] != BaBanner::TYPE_CUSTOM){
                 // Если файл не передан, тип не записываем
                 if(!$delFile) unset($item['ba_type']);
             }
